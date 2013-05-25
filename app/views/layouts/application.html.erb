@@ -1,23 +1,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html>
 <head>
-  <title>Calendar</title>  
+  <title>Calendar</title>
   <%= stylesheet_link_tag "fullcalendar.css" %>
   <%= stylesheet_link_tag "application.css" %>
   <%= javascript_include_tag "jquery.js" %>
   <%= javascript_include_tag "jquery.rest.js" %>
   <%= javascript_include_tag "rails.js" %>
   <%= javascript_include_tag "application.js" %>
-  
+
   <!-- these are needed for the calendar. -->
   <%= javascript_include_tag "jquery-ui-1.8.11.custom.min.js" %>
   <%= javascript_include_tag "fullcalendar.js" %>
   <%= javascript_include_tag "calendar.js" %>
-  
-  <%= csrf_meta_tag %>  
-  
+
+  <%= csrf_meta_tag %>
+
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
-  
+
 </head>
+
+<nav>
+  <ul>
+    <% if current_user %>
+      <li>Signed in as <%= current_user.email %></li>
+      <li><%= link_to "Sign out", "/signout" %></li>
+    <% else %>
+      <li><%= link_to "Sign in with Google +", "auth/google_oauth2" %></li>
+    <% end %>
+    <br>
+    <li><%= link_to "Create a New Event", new_event_path %></li>
+  </ul>
+</nav>
+
 <body>
 
 <%= yield %>

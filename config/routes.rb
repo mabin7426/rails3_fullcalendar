@@ -3,6 +3,10 @@ Calendar::Application.routes.draw do
 
   get "calendar/index"
 
+  get "/auth/:provider/callback" => "sessions#create"
+
+  get "/signout" => "sessions#destroy"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -55,7 +59,7 @@ Calendar::Application.routes.draw do
   # root :to => "welcome#index"
 
   root :to => "calendar#index"
-  
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

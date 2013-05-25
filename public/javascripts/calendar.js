@@ -4,36 +4,36 @@ $(document).ready(function() {
 	var d = date.getDate();
 	var m = date.getMonth();
 	var y = date.getFullYear();
-	
+
 	$('#calendar').fullCalendar({
-		editable: true,        
+		editable: true,
 		header: {
             left: 'prev,next today',
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
-        defaultView: 'month',
-        height: 500,
+        defaultView: 'agendaWeek',
+        height: 700,
         slotMinutes: 15,
-        
+
         loading: function(bool){
-            if (bool) 
+            if (bool)
                 $('#loading').show();
-            else 
+            else
                 $('#loading').hide();
         },
-        
-        // a future calendar might have many sources.        
+
+        // a future calendar might have many sources.
         eventSources: [{
             url: '/events',
             color: 'yellow',
             textColor: 'black',
             ignoreTimezone: false
         }],
-        
+
         timeFormat: 'h:mm t{ - h:mm t} ',
         dragOpacity: "0.5",
-        
+
         //http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
         eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
             updateEvent(event);
